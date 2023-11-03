@@ -1,0 +1,25 @@
+package JDBC_Topic;
+import java.sql.*;
+
+public class ResultSetEx {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mdjt54","root","7588578169");
+	
+		Statement stat=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);                
+		ResultSet rs=stat.executeQuery("select * from student");
+		rs.absolute(3);
+		System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getInt(3));
+		con.close();
+		
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		
+
+	}
+
+}
